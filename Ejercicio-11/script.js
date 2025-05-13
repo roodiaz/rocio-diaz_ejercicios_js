@@ -1,7 +1,7 @@
 const paragraphs = document.querySelectorAll('.paragraph');
-const button = document.getElementById('btn');
+const btn = document.getElementById('btn');
 
-button.addEventListener('click', () => {
+btn.addEventListener('click', () => {
     paragraphs.forEach(paragraph => {
         paragraph.style.backgroundColor  = 'grey';
     });
