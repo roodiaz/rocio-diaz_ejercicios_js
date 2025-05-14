@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario con Validación</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .exito {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="formulario">
+    <h2>Registro</h2>
+    
+    <label for="nombre">Nombre</label>
+    <input type="text" id="nombre" />
+    <div class="error" id="errorNombre"></div>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" />
+    <div class="error" id="errorEmail"></div>
+
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" />
+    <div class="error" id="errorPassword"></div>
+
+    <button type="submit">Enviar</button>
+    <div class="exito" id="mensajeExito"></div>
+  </form>
+
+  <script>
+    const formulario = document.getElementById('formulario');
+    const nombre = document.getElementById('nombre');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+
+    const errorNombre = document.getElementById('errorNombre');
+    const errorEmail = document.getElementById('errorEmail');
+    const errorPassword = document.getElementById('errorPassword');
+    const mensajeExito = document.getElementById('mensajeExito');
+
+    formulario.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      let valido = true;
+      errorNombre.textContent = '';
+      errorEmail.textContent = '';
+      errorPassword.textContent = '';
+      mensajeExito.textContent = '';
+
+      if (nombre.value.trim() === '') {
+        errorNombre.textContent = 'El nombre es obligatorio.';
+        valido = false;
+      }
+
+      if (!email.value.includes('@') || email.value.trim() === '') {
+        errorEmail.textContent = 'Introduce un email válido.';
+        valido = false;
+      }
+
+      if (password.value.length < 6) {
+        errorPassword.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+        valido = false;
+      }
+
+      if (valido) {
+        mensajeExito.textContent = 'Formulario enviado con éxito ✅';
+        formulario.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
